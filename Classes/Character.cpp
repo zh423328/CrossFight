@@ -1,11 +1,11 @@
 #include "Character.h"
 
-CCharacter::CCharacter()
+CMapPlayer::CMapPlayer()
 {
 
 }
 
-CCharacter::~CCharacter()
+CMapPlayer::~CMapPlayer()
 {
 	CC_SAFE_RELEASE(m_pIdle);
 	CC_SAFE_RELEASE(m_pWalk);
@@ -14,7 +14,7 @@ CCharacter::~CCharacter()
 	CC_SAFE_RELEASE(m_pDead);
 }
 
-bool CCharacter::init()
+bool CMapPlayer::init()
 {
 	if (!IActionSprite::initWithSpriteFrameName("hero_idle_00.png"))
 		return false;
@@ -35,7 +35,7 @@ bool CCharacter::init()
 }
 
 //添加动作
-void CCharacter::CreateAction()
+void CMapPlayer::CreateAction()
 {
 	//闲置动作
 	CCArray * pIdleAry  = CCArray::create();

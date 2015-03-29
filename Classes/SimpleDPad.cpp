@@ -66,13 +66,20 @@ void SimpleDPad::update( float dt )
 bool SimpleDPad::ccTouchBegan( CCTouch *pTouch,CCEvent *pEvent )
 {
 	//计算是否在区域内
-	float fDistance = ccpDistanceSQ(pTouch->getLocation(),getPosition());
+
+	CCNode * pNodeParent = getParent();
+	if (pNodeParent== NULL)
+		return false;
+
+	CCPoint pt = pNodeParent->convertToNodeSpace(pTouch->getLocation());;
+
+	float fDistance = ccpDistanceSQ(pt,getPosition());
 
 	//在圆盘内
 	if (fDistance <= m_fradius * m_fradius)
 	{
 		//更新朝向
-		updateDirectionForTouchLocation(pTouch->getLocation());
+		updateDirectionForTouchLocation(pt);
 		m_bHold = true;
 
 		return true;
@@ -84,7 +91,8 @@ bool SimpleDPad::ccTouchBegan( CCTouch *pTouch,CCEvent *pEvent )
 //移动
 void SimpleDPad::ccTouchMoved( CCTouch *pTouch,CCEvent *pEvent )
 {
-	updateDirectionForTouchLocation(pTouch->getLocation());
+	CCPoint pt = pTouch->getLocation();
+	updateDirectionForTouchLocation(pt);
 }
 
 void SimpleDPad::ccTouchEnded(CCTouch *pTouch,CCEvent *pEvent)

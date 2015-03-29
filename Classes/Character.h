@@ -5,16 +5,16 @@
 //////////////////////////////////////////////////////////////////////////
 #include "ActionSprite.h"
 
-class CCharacter : public IActionSprite
+class CMapPlayer : public IActionSprite
 {
 public:
-	CCharacter();
-	~CCharacter();
+	CMapPlayer();
+	~CMapPlayer();
 
 	virtual void CreateAction();
 
 	virtual bool init();
 
-	CREATE_FUNC(CCharacter);
+	CREATE_FUNC(CMapPlayer);
 };
 #endif
